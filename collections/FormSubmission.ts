@@ -1,9 +1,18 @@
 import { CollectionConfig } from 'payload/types';
+import { isAdminOrSelf } from '../access/isAdminOrSelf';
+import { isAdmin } from '../access/isAdmin';
 
 const FormSubmission: CollectionConfig = {
   slug: 'form-submissions',
   access: {
-    create: () => true,
+    // Only admins can create
+    create: isAdmin,
+    // Only admins or editors with site access can read
+    read: isAdminOrSelf,
+    // Only admins can update
+    update: isAdmin,
+    // Only admins can delete
+    delete: isAdmin,
   },
   hooks: {
     afterChange: [

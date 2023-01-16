@@ -17,6 +17,7 @@ import StudySlider, { Type as StudySliderType } from '../blocks/StudySlider';
 import CTAGrid, { Type as CTAGridType } from '../blocks/CTAGrid';
 import RedHeadline from '../components/RichText/leaves/RedHeadline';
 import RedUnderline from '../components/RichText/leaves/RedUnderline';
+import {isAdmin} from '../access/isAdmin'
 
 export type Layout =
   CallToActionType
@@ -51,8 +52,16 @@ export const Page: CollectionConfig = {
   admin: {
     useAsTitle: 'title',
   },
+
   access: {
-    read: (): boolean => true, // Everyone can read Pages
+    // Only admins can create
+    create: isAdmin,
+    // Only admins or editors with site access can read
+    read: isAdmin,
+    // Only admins can update
+    update: isAdmin,
+    // Only admins can delete
+    delete: isAdmin,
   },
   fields: [
     {

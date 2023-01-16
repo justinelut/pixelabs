@@ -19,6 +19,7 @@ import { Type as SocialMediaType } from '../globals/SocialMedia';
 import CloseModalOnRoute from '../components/utilities/CloseModalOnRoute';
 import transitions from '../css/transitions';
 import 'react-toastify/dist/ReactToastify.css';
+import '../style/globals.css'
 
 type AppProps = {
   pageProps: unknown

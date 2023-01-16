@@ -8,21 +8,33 @@ import Category from './collections/Category';
 import MegaMenu from './globals/MegaMenu';
 import SocialMedia from './globals/SocialMedia';
 import Footer from './globals/Footer';
+import {Users} from './collections/Users'
+import Payments from './collections/Payments'
+
 
 dotenv.config();
 
 export default buildConfig({
   serverURL: process.env.PAYLOAD_PUBLIC_SERVER_URL,
+
+  admin: {
+    user: Users.slug,
+  },
+
   collections: [
+    Category,
     Page,
     Study,
     Media,
+    Payments,
     FormSubmission,
-    Category,
+    Users
   ],
   globals: [
     MegaMenu,
     SocialMedia,
     Footer,
   ],
+
+  
 });

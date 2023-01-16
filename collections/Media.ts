@@ -1,4 +1,5 @@
 import { CollectionConfig } from 'payload/types';
+import { isAdmin } from '../access/isAdmin';
 
 export type SizeDetails = {
   filename: string
@@ -23,13 +24,21 @@ export type Type = {
 const Media: CollectionConfig = {
   slug: 'media',
   access: {
-    read: (): boolean => true, // Everyone can read Media
+    // Only admins can create
+    create: isAdmin,
+    // Only admins or editors with site access can read
+    read: isAdmin,
+    // Only admins can update
+    update: isAdmin,
+    // Only admins can delete
+    delete: isAdmin,
   },
   admin: {
     useAsTitle: 'filename',
   },
   upload: {
     adminThumbnail: 'card',
+    
     imageSizes: [
       {
         name: 'card',
@@ -52,6 +61,7 @@ const Media: CollectionConfig = {
         height: 576,
       },
     ],
+    
   },
   fields: [
     {
@@ -61,6 +71,7 @@ const Media: CollectionConfig = {
       required: true,
     },
   ],
+  
 };
 
 export default Media;

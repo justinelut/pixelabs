@@ -16,6 +16,7 @@ import MediaGrid, { Type as MediaGridType } from '../blocks/MediaGrid';
 import MediaCollage, { Type as MediaCollageType } from '../blocks/MediaCollage';
 import StudySlider, { Type as StudySliderType } from '../blocks/StudySlider';
 import CTAGrid, { Type as CTAGridType } from '../blocks/CTAGrid';
+import { isAdmin } from '../access/isAdmin';
 
 export type Layout =
   CallToActionType
@@ -51,8 +52,15 @@ const Study: CollectionConfig = {
   admin: {
     useAsTitle: 'title',
   },
-  access: {
-    read: (): boolean => true, // Everyone can read Pages
+   access: {
+    // Only admins can create
+    create: isAdmin,
+    // Only admins or editors with site access can read
+    read: isAdmin,
+    // Only admins can update
+    update: isAdmin,
+    // Only admins can delete
+    delete: isAdmin,
   },
   fields: [
     {

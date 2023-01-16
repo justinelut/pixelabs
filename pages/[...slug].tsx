@@ -52,7 +52,11 @@ export default Page;
 export const getStaticProps: GetStaticProps = async (ctx) => {
   const slug = ctx.params?.slug || 'home';
 
-  const pageReq = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/pages?where[slug][equals]=${slug}`);
+  const pageReq = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/pages?where[slug][equals]=${slug}`, {
+    headers: {
+      "Authorization": "User API-Key 6320f9e1-f1e8-4d52-9f3b-4ded36ec843e",
+    },
+  });
   const pageData = await pageReq.json();
 
   return {
@@ -63,8 +67,13 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
   };
 };
 
+
 export const getStaticPaths: GetStaticPaths = async () => {
-  const pageReq = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/pages?limit=100`);
+  const pageReq = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/pages?limit=100`, {
+    headers: {
+      "Authorization": "User API-Key 6320f9e1-f1e8-4d52-9f3b-4ded36ec843e",
+    },
+  });
   const pageData = await pageReq.json();
 
   return {
