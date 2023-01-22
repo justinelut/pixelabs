@@ -1,5 +1,5 @@
 import { Field } from "payload/types";
-import ProjectProgress from "./project";
+import ProjectProgress from "./Progress";
 
 export const validateHexColor = () => {
   return (

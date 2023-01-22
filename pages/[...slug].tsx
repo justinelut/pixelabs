@@ -54,7 +54,7 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
 
   const pageReq = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/pages?where[slug][equals]=${slug}`, {
     headers: {
-      "Authorization": "User API-Key 6320f9e1-f1e8-4d52-9f3b-4ded36ec843e",
+      "Authorization": "Profile API-Key ff8d063b-71f1-41a2-a608-c63ade83b7b2",
     },
   });
   const pageData = await pageReq.json();
@@ -71,7 +71,7 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
 export const getStaticPaths: GetStaticPaths = async () => {
   const pageReq = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/pages?limit=100`, {
     headers: {
-      "Authorization": "User API-Key 6320f9e1-f1e8-4d52-9f3b-4ded36ec843e",
+      "Authorization": "Profile API-Key ff8d063b-71f1-41a2-a608-c63ade83b7b2",
     },
   });
   const pageData = await pageReq.json();

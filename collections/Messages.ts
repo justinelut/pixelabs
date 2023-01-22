@@ -2,8 +2,8 @@ import { CollectionConfig } from 'payload/types';
 import { isAdminOrSelf } from '../access/isAdminOrSelf';
 import { isAdmin } from '../access/isAdmin';
 
-const FormSubmission: CollectionConfig = {
-  slug: 'form-submissions',
+const Messages: CollectionConfig = {
+  slug: 'message',
   access: {
     // Only admins can create
     create: isAdmin,
@@ -51,4 +51,4 @@ const FormSubmission: CollectionConfig = {
   ],
 };
 
-export default FormSubmission;
+export default Messages;

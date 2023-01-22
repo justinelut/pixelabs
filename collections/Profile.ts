@@ -2,8 +2,8 @@ import { CollectionConfig } from "payload/types";
 import { isAdmin, isAdminFieldLevel } from "../access/isAdmin";
 import { isAdminOrSelf } from "../access/isAdminOrSelf";
 
-export const Users: CollectionConfig = {
-  slug: "users",
+export const Profile: CollectionConfig = {
+  slug: "profile",
   auth: {
     // This property controls how deeply "populated"
     // relationship docs are that are stored in the req.user.
