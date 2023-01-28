@@ -1,4 +1,5 @@
 import { GlobalConfig } from 'payload/types';
+import { isAdmin } from '../access/isAdmin';
 import link, { Type as LinkType } from '../fields/link';
 
 export type Type = {
@@ -11,7 +12,7 @@ const Footer: GlobalConfig = {
   slug: 'footer',
   label: 'Footer',
   access: {
-    read: () => true,
+    read: isAdmin,
   },
   fields: [
     {

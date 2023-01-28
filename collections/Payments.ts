@@ -15,11 +15,11 @@ const Payments: CollectionConfig = {
   },
   access: {
     // Only admins can create
-    create: isAdmin,
+    create: () => false,
     // Only admins or editors with site access can read
     read: isAdminOrSelf,
     // Only admins can update
-    update: isAdmin,
+    update: () => false,
     // Only admins can delete
     delete: isAdmin,
   },

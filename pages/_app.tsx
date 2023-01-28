@@ -18,6 +18,9 @@ import { Type as FooterType } from '../globals/Footer';
 import { Type as SocialMediaType } from '../globals/SocialMedia';
 import CloseModalOnRoute from '../components/utilities/CloseModalOnRoute';
 import transitions from '../css/transitions';
+import { ThemeProvider } from "@mui/material/styles";
+import {CssBaseline} from '@mui/material'
+import theme from '../style/Theme'
 import 'react-toastify/dist/ReactToastify.css';
 import '../style/globals.css'
 
@@ -66,69 +69,64 @@ const MyApp = (appProps: AppProps): React.ReactElement => {
   return (
     <ScrollInfoProvider>
       <WindowInfoProvider breakpoints={breakpoints}>
-        <ModalProvider
-          zIndex={zIndex.modal}
-          classPrefix="payload"
-          transTime={400}
-        >
-          <GridContainerWidthProvider>
-            <GridProvider
-              rowGap={{
-                s: base(2),
-                m: base(2),
-                l: base(2),
-                xl: base(2),
-              }}
-              colGap={{
-                s: base(2),
-                m: base(2),
-                l: base(2),
-                xl: base(2),
-              }}
-              cols={{
-                s: 8,
-                m: 8,
-                l: 12,
-                xl: 12,
-              }}
-            >
-              <div className={classes.app}>
-                <Header
-                  megaMenu={megaMenu}
-                  socialMedia={socialMedia}
-                />
-                <TransitionGroup
-                  component={null}
-                  exit
-                  appear
-                >
-                  <SwitchTransition type="out-in">
-                    <CSSTransition
-                      key={`${router.pathname}${JSON.stringify(router.query)}`}
-                      timeout={transitions.page}
-                      classNames={transitionClass}
-                    >
-                      <div className={transitionClass}>
-                        <Component
-                          {...pageProps}
-                          footer={footer}
-                          socialMedia={socialMedia}
-                        />
-                      </div>
-                    </CSSTransition>
-                  </SwitchTransition>
-                </TransitionGroup>
-              </div>
-            </GridProvider>
-          </GridContainerWidthProvider>
-          <CloseModalOnRoute />
-          <ModalContainer />
-        </ModalProvider>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <ModalProvider
+            zIndex={zIndex.modal}
+            classPrefix="payload"
+            transTime={400}
+          >
+            <GridContainerWidthProvider>
+              <GridProvider
+                rowGap={{
+                  s: base(2),
+                  m: base(2),
+                  l: base(2),
+                  xl: base(2),
+                }}
+                colGap={{
+                  s: base(2),
+                  m: base(2),
+                  l: base(2),
+                  xl: base(2),
+                }}
+                cols={{
+                  s: 8,
+                  m: 8,
+                  l: 12,
+                  xl: 12,
+                }}
+              >
+                <div className={classes.app}>
+                  <Header megaMenu={megaMenu} socialMedia={socialMedia} />
+                  <TransitionGroup component={null} exit appear>
+                    <SwitchTransition type="out-in">
+                      <CSSTransition
+                        key={`${router.pathname}${JSON.stringify(
+                          router.query
+                        )}`}
+                        timeout={transitions.page}
+                        classNames={transitionClass}
+                      >
+                        <div className={transitionClass}>
+                          <Component
+                            {...pageProps}
+                            footer={footer}
+                            socialMedia={socialMedia}
+                          />
+                        </div>
+                      </CSSTransition>
+                    </SwitchTransition>
+                  </TransitionGroup>
+                </div>
+              </GridProvider>
+            </GridContainerWidthProvider>
+            <CloseModalOnRoute />
+            <ModalContainer />
+          </ModalProvider>
+        </ThemeProvider>
       </WindowInfoProvider>
-      <ToastContainer
-        position="bottom-center"
-        transition={Slide}
-      />
+      <ToastContainer position="bottom-center" transition={Slide} />
     </ScrollInfoProvider>
   );
 };

@@ -1,4 +1,5 @@
 import { GlobalConfig } from 'payload/types';
+import { isAdmin } from '../access/isAdmin';
 
 export type Type = {
   links: {
@@ -11,7 +12,7 @@ const SocialMedia: GlobalConfig = {
   slug: 'social-media',
   label: 'Social Media',
   access: {
-    read: () => true,
+    read: isAdmin,
   },
   fields: [
     {

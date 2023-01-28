@@ -10,7 +10,7 @@ export const Profile: CollectionConfig = {
     // It should be kept to as low as possible, which
     // keeps performance fast.
     depth: 0,
-    useAPIKey: true,
+    useAPIKey: isAdmin ? true : false,
     
   },
   admin: {
